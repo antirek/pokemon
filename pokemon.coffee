@@ -1,9 +1,9 @@
-pokemon = (text, link, options)->
-  if text and link
+pokemon = (name, link, options)->
+  if name and link
     html = '<div class="pokemonBlock">
               <a href="@pokemonHref" target="_blank">
                 <div id="@pokemonId">
-                  <img src="https://media.giphy.com/media/S7nfK9JIe0meA/giphy.gif">
+                  <img src="pokemons/@pokemonName.gif">
                 </div>
               </a>
             </div>'
@@ -38,6 +38,7 @@ pokemon = (text, link, options)->
     html = html
     .replace '@pokemonHref', link
     .replace '@pokemonId', id
+    .replace '@pokemonName', name || 'pikachu'
 
     component.innerHTML = html
     document.body.appendChild component
