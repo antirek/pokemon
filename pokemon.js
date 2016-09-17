@@ -2,9 +2,13 @@
 var pokemon;
 
 pokemon = function(name, link, options) {
-  var component, css, html, id, style;
+  var component, css, html, id, pokemonsList, style;
+  pokemonsList = ['pikachu', 'aerodactyl', 'alakazam', 'bulbasaur', 'charmander'];
+  if (!name) {
+    name = pokemonsList[Math.floor(Math.random() * pokemonsList.length)];
+  }
   if (name && link) {
-    html = '<div class="pokemonBlock"> <a href="@pokemonHref" target="_blank"> <div id="@pokemonId"> <img src="pokemons/@pokemonName.gif"> </div> </a> </div>';
+    html = '<div class="pokemonBlock"> <a href="@pokemonHref" target="_blank"> <div id="@pokemonId"> <img src="https://antirek.github.io/pokemon/pokemons/@pokemonName.gif"> </div> </a> </div>';
     if (!options) {
       options = {};
     }
@@ -13,8 +17,8 @@ pokemon = function(name, link, options) {
     } else {
       id = "pokemon" + Date.now();
     }
-    css = '#@pokemonId { position: fixed !important; top: @pokemonTop; right: @pokemonRight; white-space: nowrap !important; z-index: 1000000 !important; }';
-    css = css.replace('@pokemonId', id).replace('@pokemonTop', options.top || '300px').replace('@pokemonRight', options.right || '10px');
+    css = '#@pokemonId { position: fixed !important; top: @pokemonTop; left: @pokemonLeft; right: @pokemonRight; bottom: @pokemonBottom; z-index: 1000000 !important; }';
+    css = css.replace('@pokemonId', id).replace('@pokemonTop', options.top || '').replace('@pokemonLeft', options.left || '').replace('@pokemonRight', options.right || '').replace('@pokemonBottom', options.bottom || '');
     style = document.createElement("style");
     style.setAttribute('type', 'text/css');
     style.appendChild(document.createTextNode(css));
